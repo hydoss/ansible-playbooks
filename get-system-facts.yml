@@ -3,6 +3,9 @@
   hosts: all
   connection: local
   gather_facts: false
+  
+  vars:
+    ansible_python_interpreter: /home/user/Test/.venvTest/bin/python3.12
 
   tasks:
     - name: Gather facts for device
