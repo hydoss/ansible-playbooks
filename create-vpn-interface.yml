@@ -6,21 +6,19 @@
 
 
   vars:
-  my_provider:
-          ip_address: "{{ ansible_host }}"
-          username: "{{ ansible_user }}"
-          password: "{{ ansible_password }}"  
+    device:
+       ip_address: "{{ ansible_host }}"
+       username: "{{ ansible_user }}"
+       password: "{{ ansible_password }}"  
   
   tasks:
     - name: Criar Zona para o Peer Remoto
       paloaltonetworks.panos.panos_zone:
-        provider: '{{ my_provider }}'
         zone: '{{ vpn_zone_name }}'
         mode: 'layer3'
     
     - name: Criar Tunnel Interface
       paloaltonetworks.panos.panos_tunnel:
-        provider: '{{ my_provider }}'
         if_name: "{{ vpn_interface_name }}"  # Ex: tunnel.10
         ip: "{{ vpn_tunnel_ip }}"    # Ex: 10.0.0.1/30
         template: "{{ panorama_template }}"  # O Template onde a VPN vai morar
