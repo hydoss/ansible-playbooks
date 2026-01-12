@@ -6,7 +6,7 @@
 
   tasks:
     - name: Criar Tunnel Interface
-      paloaltonetworks.panos.panos_tunnel_interface:
+      paloaltonetworks.panos.panos_tunnel:
         provider:
           ip_address: "{{ ansible_host }}"
           username: "{{ ansible_user }}"
