@@ -25,6 +25,8 @@
         if_name: "{{ vpn_interface_name }}"  # Ex: tunnel.10
         ip: "{{ vpn_tunnel_ip }}"    # Ex: 10.0.0.1/30
         template: "{{ panorama_template }}"  # O Template onde a VPN vai morar
+        zone_name: '{{ vpn_zone_name }}'
+        vr_name: 'default'
         state: 'present'
       register: tunnel_result
 
