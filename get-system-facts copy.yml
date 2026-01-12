@@ -13,6 +13,11 @@
           password: "{{ ansible_password }}"
       register: device_facts
 
-    - name: Display model, PAN-OS version
+    - name: Display information
       ansible.builtin.debug:
-        msg: "Model: {{ ansible_facts['net_model'] }}, version: {{ ansible_facts['net_version'] }}"
+        msg:
+          - "Hostname: {{ ansible_facts['net_hostname'] }}"
+          - "Serial: {{ ansible_facts['net_serial'] }}"
+          - "Model: {{ ansible_facts['net_model'] }}"
+          - "Version: {{ ansible_facts['net_version'] }}"
+          - "Uptime: {{ ansible_facts['net_uptime'] }}"
