@@ -11,13 +11,14 @@
           ip_address: "{{ ansible_host }}"
           username: "{{ ansible_user }}"
           password: "{{ ansible_password }}"
-      register: device_facts
+          port: 443
+      register: device_facts  # Os dados entram aqui!
 
     - name: Display information
       ansible.builtin.debug:
         msg:
-          - "Hostname: {{ ansible_facts['net_hostname'] }}"
-          - "Serial: {{ ansible_facts['net_serial'] }}"
-          - "Model: {{ ansible_facts['net_model'] }}"
-          - "Version: {{ ansible_facts['net_version'] }}"
-          - "Uptime: {{ ansible_facts['net_uptime'] }}"
+          # Note que agora usamos 'device_facts.ansible_facts'
+          - "Hostname: {{ device_facts.ansible_facts.net_hostname | default('N/A') }}"
+          - "Serial: {{ device_facts.ansible_facts.net_serial | default('N/A') }}"
+          - "Model: {{ device_facts.ansible_facts.net_model | default('N/A') }}"
+          - "Version: {{ device_facts.ansible_facts.net_version | default('N/A') }}"
