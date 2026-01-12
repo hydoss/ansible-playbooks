@@ -37,6 +37,7 @@
         destination: '1.1.1.0/24'
         interface: "{{ vpn_interface_name }}"
         template: "{{ panorama_template }}"
+        nexthop_type: 'none'
   
     - name: Resultado da Criação
       ansible.builtin.debug:
