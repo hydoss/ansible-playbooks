@@ -16,6 +16,7 @@
       paloaltonetworks.panos.panos_zone:
         provider: '{{ device }}'
         zone: '{{ vpn_zone_name }}'
+        template: "{{ panorama_template }}"
         mode: 'layer3'
     
     - name: Criar Tunnel Interface
