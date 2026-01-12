@@ -4,27 +4,11 @@
   connection: local
   gather_facts: false
 
-  # O Controller injeta as credenciais automaticamente no objeto 'device_provider'
-  # se você usar a credencial do tipo Palo Alto Networks no Template.
-
-  collections:
-    - paloaltonetworks.panos
-
   tasks:
     - name: Gather facts for device
       paloaltonetworks.panos.panos_facts:
-        # 'provider' agora busca as credenciais injetadas pelo Controller
-        provider:
-          ip_address: "{{ ansible_host }}"
-          username: "{{ ansible_user }}"
-          password: "{{ ansible_password }}"
-          api_key: "{{ ansible_api_key | default(omit) }}"
-      register: device_facts
+        provider: '{{ device }}'
 
-    - name: Display information
+    - name: Display model, PAN-OS version
       ansible.builtin.debug:
-        msg:
-          - "Hostname: {{ device_facts.ansible_facts.net_hostname }}"
-          - "Serial: {{ device_facts.ansible_facts.net_serial }}"
-          - "Model: {{ device_facts.ansible_facts.net_model }}"
-          - "Version: {{ device_facts.ansible_facts.net_version }}"
+        msg: "Model: {{ ansible_facts['net_model'] }}, version: {{ ansible_facts['net_version'] }}"
