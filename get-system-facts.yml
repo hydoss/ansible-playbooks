@@ -5,7 +5,7 @@
   gather_facts: false
   
   vars:
-    ansible_python_interpreter: /home/user/Test/.venvTest/bin/python3.12
+    ansible_python_interpreter: /usr/bin/python
 
   tasks:
     - name: Gather facts for device
