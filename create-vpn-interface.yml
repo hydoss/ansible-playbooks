@@ -12,7 +12,7 @@
           username: "{{ ansible_user }}"
           password: "{{ ansible_password }}"
         if_name: "{{ vpn_interface_name }}"  # Ex: tunnel.10
-        ip_address: "{{ vpn_tunnel_ip }}"    # Ex: 10.0.0.1/30
+        ip: "{{ vpn_tunnel_ip }}"    # Ex: 10.0.0.1/30
         template: "{{ panorama_template }}"  # O Template onde a VPN vai morar
         state: 'present'
       register: tunnel_result
@@ -20,4 +20,3 @@
     - name: Resultado da Criação
       ansible.builtin.debug:
         msg: "Interface {{ vpn_interface_name }} criada no Template {{ panorama_template }}"
-        
