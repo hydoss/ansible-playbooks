@@ -14,11 +14,13 @@
   tasks:
     - name: Criar Zona para o Peer Remoto
       paloaltonetworks.panos.panos_zone:
+        provider: '{{ device }}'
         zone: '{{ vpn_zone_name }}'
         mode: 'layer3'
     
     - name: Criar Tunnel Interface
       paloaltonetworks.panos.panos_tunnel:
+        provider: '{{ device }}'
         if_name: "{{ vpn_interface_name }}"  # Ex: tunnel.10
         ip: "{{ vpn_tunnel_ip }}"    # Ex: 10.0.0.1/30
         template: "{{ panorama_template }}"  # O Template onde a VPN vai morar
